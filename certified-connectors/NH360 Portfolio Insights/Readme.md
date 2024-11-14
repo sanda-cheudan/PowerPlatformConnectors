@@ -18,6 +18,7 @@ You will need the following to proceed:
 The connector supports the following operations:
 * `Create entity`: Create a new entity in the NH360 Portfolio Insights site.
 * `Get entity`: Returns properties of a selected entity.
+* `Get entity -no retry`: Returns the properties of a selected entity. If the entity ID is incorrect, the action will return an error and will not retry.
 * `List all entities`: Returns a list with all Entities from the NH360 Portfolio Insights site.
 * `List entity types`: Returns a list with all Entity Types from the NH360 Portfolio Insights site.
 * `Get entity field value`: Returns a specific Entity Field value from an entity.

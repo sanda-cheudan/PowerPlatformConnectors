@@ -51,11 +51,11 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "x-ms-visibility": "internal",
@@ -137,11 +137,11 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "x-ms-visibility": "internal",
@@ -184,11 +184,11 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "x-ms-visibility": "internal",
@@ -310,11 +310,11 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "x-ms-visibility": "internal",
@@ -367,11 +367,11 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "x-ms-visibility": "internal",
@@ -424,11 +424,11 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "x-ms-visibility": "internal",
@@ -481,11 +481,11 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "x-ms-visibility": "internal",
@@ -538,11 +538,11 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "summary": "List entity types",
@@ -559,11 +559,6 @@
       }
     },
     "/Events/AddFinancialValuesChangedHook": {
-      "x-ms-notification-content": {
-        "schema": {
-          "$ref": "#/definitions/RemoteFinancialValuesEventArgs"
-        }
-      },
       "post": {
         "tags": [
           "Events"
@@ -588,35 +583,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "required": [
-                "ReceiverEndpoint"
-              ],
-              "type": "object",
-              "properties": {
-                "SiteURL": {
-                  "type": "string",
-                  "x-ms-summary": "Site URL:",
-                  "description": "The absolute URL of your 360 Portfolio Insights site"
-                },
-                "ReceiverEndpoint": {
-                  "type": "string",
-                  "x-ms-visibility": "internal",
-                  "x-ms-notification-url": true
-                },
-                "Order": {
-                  "format": "int32",
-                  "type": "integer",
-                  "x-ms-visibility": "advanced",
-                  "x-ms-summary": "Event Order",
-                  "description": "The order of this event in the list"
-                },
-                "Name": {
-                  "type": "string",
-                  "x-ms-visibility": "advanced",
-                  "x-ms-summary": "Event Name",
-                  "description": "An identifier for the event"
-                }
-              }
+              "$ref": "#/definitions/EventCreationInformation"
             }
           }
         ],
@@ -630,25 +597,34 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "summary": "On Financial Values Change",
         "description": "Executed when a financial value is changed.",
         "x-ms-trigger": "single",
-        "x-ms-trigger-hint": "Executed when a financial value is changed."
+        "x-ms-trigger-hint": "Executed when a financial value is changed.",
+        "x-ms-openai-data": {
+          "openai-enabled": true,
+          "operations": [
+            {
+              "operationId": "EventsAddFinancialValuesChangedHook",
+              "x-ms-require-user-confirmation": false
+            }
+          ]
+        }
+      },
+      "x-ms-notification-content": {
+        "schema": {
+          "$ref": "#/definitions/RemoteFinancialValuesEventArgs"
+        }
       }
     },
     "/Events/AddEntityCreatedHook": {
-      "x-ms-notification-content": {
-        "schema": {
-          "$ref": "#/definitions/RemoteEntityEventArgs"
-        }
-      },
       "post": {
         "tags": [
           "Events"
@@ -673,35 +649,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "required": [
-                "ReceiverEndpoint"
-              ],
-              "type": "object",
-              "properties": {
-                "SiteURL": {
-                  "type": "string",
-                  "x-ms-summary": "Site URL:",
-                  "description": "The absolute URL of your 360 Portfolio Insights site"
-                },
-                "ReceiverEndpoint": {
-                  "type": "string",
-                  "x-ms-visibility": "internal",
-                  "x-ms-notification-url": true
-                },
-                "Order": {
-                  "format": "int32",
-                  "type": "integer",
-                  "x-ms-visibility": "advanced",
-                  "x-ms-summary": "Event Order",
-                  "description": "The order of this event in the list"
-                },
-                "Name": {
-                  "type": "string",
-                  "x-ms-visibility": "advanced",
-                  "x-ms-summary": "Event Name",
-                  "description": "An identifier for the event"
-                }
-              }
+              "$ref": "#/definitions/EventCreationInformation"
             }
           }
         ],
@@ -715,25 +663,34 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "summary": "On Entity Created",
         "description": "Executed when a new entity is created in the NH360 Portfolio Insights site.",
         "x-ms-trigger": "single",
-        "x-ms-trigger-hint": "Executed when a new entity is created in the NH360 Portfolio Insights site."
-      }
-    },
-    "/Events/AddEntityUpdatedHook": {
+        "x-ms-trigger-hint": "Executed when a new entity is created in the NH360 Portfolio Insights site.",
+        "x-ms-openai-data": {
+          "openai-enabled": true,
+          "operations": [
+            {
+              "operationId": "EventsAddEntityCreatedHook",
+              "x-ms-require-user-confirmation": false
+            }
+          ]
+        }
+      },
       "x-ms-notification-content": {
         "schema": {
           "$ref": "#/definitions/RemoteEntityEventArgs"
         }
-      },
+      }
+    },
+    "/Events/AddEntityUpdatedHook": {
       "post": {
         "tags": [
           "Events"
@@ -758,35 +715,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "required": [
-                "ReceiverEndpoint"
-              ],
-              "type": "object",
-              "properties": {
-                "SiteURL": {
-                  "type": "string",
-                  "x-ms-summary": "Site URL:",
-                  "description": "The absolute URL of your 360 Portfolio Insights site"
-                },
-                "ReceiverEndpoint": {
-                  "type": "string",
-                  "x-ms-visibility": "internal",
-                  "x-ms-notification-url": true
-                },
-                "Order": {
-                  "format": "int32",
-                  "type": "integer",
-                  "x-ms-visibility": "advanced",
-                  "x-ms-summary": "Event Order",
-                  "description": "The order of this event in the list"
-                },
-                "Name": {
-                  "type": "string",
-                  "x-ms-visibility": "advanced",
-                  "x-ms-summary": "Event Name",
-                  "description": "An identifier for the event"
-                }
-              }
+              "$ref": "#/definitions/EventCreationInformation"
             }
           }
         ],
@@ -800,25 +729,34 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "summary": "On Entity Updated",
         "description": "Executed when entity fields are updated.",
         "x-ms-trigger": "single",
-        "x-ms-trigger-hint": "Executed when entity fields are updated."
+        "x-ms-trigger-hint": "Executed when entity fields are updated.",
+        "x-ms-openai-data": {
+          "openai-enabled": true,
+          "operations": [
+            {
+              "operationId": "EventsAddEntityUpdatedHook",
+              "x-ms-require-user-confirmation": false
+            }
+          ]
+        }
+      },
+      "x-ms-notification-content": {
+        "schema": {
+          "$ref": "#/definitions/RemoteEntityEventArgs"
+        }
       }
     },
     "/Events/AddEntityDeletedHook": {
-      "x-ms-notification-content": {
-        "schema": {
-          "$ref": "#/definitions/RemoteEntityDeletedEventArgs"
-        }
-      },
       "post": {
         "tags": [
           "Events"
@@ -843,35 +781,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "required": [
-                "ReceiverEndpoint"
-              ],
-              "type": "object",
-              "properties": {
-                "SiteURL": {
-                  "type": "string",
-                  "x-ms-summary": "Site URL:",
-                  "description": "The absolute URL of your 360 Portfolio Insights site"
-                },
-                "ReceiverEndpoint": {
-                  "type": "string",
-                  "x-ms-visibility": "internal",
-                  "x-ms-notification-url": true
-                },
-                "Order": {
-                  "format": "int32",
-                  "type": "integer",
-                  "x-ms-visibility": "advanced",
-                  "x-ms-summary": "Event Order",
-                  "description": "The order of this event in the list"
-                },
-                "Name": {
-                  "type": "string",
-                  "x-ms-visibility": "advanced",
-                  "x-ms-summary": "Event Name",
-                  "description": "An identifier for the event"
-                }
-              }
+              "$ref": "#/definitions/EventCreationInformation"
             }
           }
         ],
@@ -885,25 +795,34 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "summary": "On Entity Deleted",
         "description": "Executed when one or more entities are deleted from the NH360 Portfolio Insights site.",
         "x-ms-trigger": "single",
-        "x-ms-trigger-hint": "Executed when one or more entities are deleted from the NH360 Portfolio Insights site."
+        "x-ms-trigger-hint": "Executed when one or more entities are deleted from the NH360 Portfolio Insights site.",
+        "x-ms-openai-data": {
+          "openai-enabled": true,
+          "operations": [
+            {
+              "operationId": "EventsAddEntityDeletedHook",
+              "x-ms-require-user-confirmation": false
+            }
+          ]
+        }
+      },
+      "x-ms-notification-content": {
+        "schema": {
+          "$ref": "#/definitions/RemoteEntityDeletedEventArgs"
+        }
       }
     },
     "/Events/AddStageTransitionHook": {
-      "x-ms-notification-content": {
-        "schema": {
-          "$ref": "#/definitions/RemoteStageEventArgs"
-        }
-      },
       "post": {
         "tags": [
           "Events"
@@ -928,35 +847,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "required": [
-                "ReceiverEndpoint"
-              ],
-              "type": "object",
-              "properties": {
-                "SiteURL": {
-                  "type": "string",
-                  "x-ms-summary": "Site URL:",
-                  "description": "The absolute URL of your 360 Portfolio Insights site"
-                },
-                "ReceiverEndpoint": {
-                  "type": "string",
-                  "x-ms-visibility": "internal",
-                  "x-ms-notification-url": true
-                },
-                "Order": {
-                  "format": "int32",
-                  "type": "integer",
-                  "x-ms-visibility": "advanced",
-                  "x-ms-summary": "Event Order",
-                  "description": "The order of this event in the list"
-                },
-                "Name": {
-                  "type": "string",
-                  "x-ms-visibility": "advanced",
-                  "x-ms-summary": "Event Name",
-                  "description": "An identifier for the event"
-                }
-              }
+              "$ref": "#/definitions/EventCreationInformation"
             }
           }
         ],
@@ -970,25 +861,34 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "summary": "On Process Stage Transition",
         "description": "Executed when an entity changes its workflow stage.",
         "x-ms-trigger": "single",
-        "x-ms-trigger-hint": "Executed when an entity changes its workflow stage."
+        "x-ms-trigger-hint": "Executed when an entity changes its workflow stage.",
+        "x-ms-openai-data": {
+          "openai-enabled": true,
+          "operations": [
+            {
+              "operationId": "EventsAddStageTransitionHook",
+              "x-ms-require-user-confirmation": false
+            }
+          ]
+        }
+      },
+      "x-ms-notification-content": {
+        "schema": {
+          "$ref": "#/definitions/RemoteStageEventArgs"
+        }
       }
     },
     "/Events/AddBreakdownValuesChangedHook": {
-      "x-ms-notification-content": {
-        "schema": {
-          "$ref": "#/definitions/RemoteBreakdownValuesEventArgs"
-        }
-      },
       "post": {
         "tags": [
           "Events"
@@ -1013,35 +913,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "required": [
-                "ReceiverEndpoint"
-              ],
-              "type": "object",
-              "properties": {
-                "SiteURL": {
-                  "type": "string",
-                  "x-ms-summary": "Site URL:",
-                  "description": "The absolute URL of your 360 Portfolio Insights site"
-                },
-                "ReceiverEndpoint": {
-                  "type": "string",
-                  "x-ms-visibility": "internal",
-                  "x-ms-notification-url": true
-                },
-                "Order": {
-                  "format": "int32",
-                  "type": "integer",
-                  "x-ms-visibility": "advanced",
-                  "x-ms-summary": "Event Order",
-                  "description": "The order of this event in the list"
-                },
-                "Name": {
-                  "type": "string",
-                  "x-ms-visibility": "advanced",
-                  "x-ms-summary": "Event Name",
-                  "description": "An identifier for the event"
-                }
-              }
+              "$ref": "#/definitions/EventCreationInformation"
             }
           }
         ],
@@ -1055,11 +927,11 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "x-ms-visibility": "internal",
@@ -1067,14 +939,14 @@
         "description": "Triggered when the breakdown values change",
         "x-ms-trigger": "single",
         "x-ms-trigger-hint": "Triggered when the breakdown values change"
+      },
+      "x-ms-notification-content": {
+        "schema": {
+          "$ref": "#/definitions/RemoteBreakdownValuesEventArgs"
+        }
       }
     },
     "/Events/AddActualsApprovalWorkflowStartedHook": {
-      "x-ms-notification-content": {
-        "schema": {
-          "$ref": "#/definitions/RemoteActualsStatusEventArgs"
-        }
-      },
       "post": {
         "tags": [
           "Events"
@@ -1099,35 +971,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "required": [
-                "ReceiverEndpoint"
-              ],
-              "type": "object",
-              "properties": {
-                "SiteURL": {
-                  "type": "string",
-                  "x-ms-summary": "Site URL:",
-                  "description": "The absolute URL of your 360 Portfolio Insights site"
-                },
-                "ReceiverEndpoint": {
-                  "type": "string",
-                  "x-ms-visibility": "internal",
-                  "x-ms-notification-url": true
-                },
-                "Order": {
-                  "format": "int32",
-                  "type": "integer",
-                  "x-ms-visibility": "advanced",
-                  "x-ms-summary": "Event Order",
-                  "description": "The order of this event in the list"
-                },
-                "Name": {
-                  "type": "string",
-                  "x-ms-visibility": "advanced",
-                  "x-ms-summary": "Event Name",
-                  "description": "An identifier for the event"
-                }
-              }
+              "$ref": "#/definitions/EventCreationInformation"
             }
           }
         ],
@@ -1141,25 +985,34 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "summary": "On Actuals Approval Workflow Started",
         "description": "Executed when Actuals Approval workflow starts",
         "x-ms-trigger": "single",
-        "x-ms-trigger-hint": "Executed when Actuals Approval workflow starts"
+        "x-ms-trigger-hint": "Executed when Actuals Approval workflow starts",
+        "x-ms-openai-data": {
+          "openai-enabled": true,
+          "operations": [
+            {
+              "operationId": "EventsAddActualsApprovalWorkflowStartedHook",
+              "x-ms-require-user-confirmation": false
+            }
+          ]
+        }
+      },
+      "x-ms-notification-content": {
+        "schema": {
+          "$ref": "#/definitions/RemoteActualsStatusEventArgs"
+        }
       }
     },
     "/Events/AddActualsPeriodStatusChangedHook": {
-      "x-ms-notification-content": {
-        "schema": {
-          "$ref": "#/definitions/RemoteStageEventArgs"
-        }
-      },
       "post": {
         "tags": [
           "Events"
@@ -1184,35 +1037,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "required": [
-                "ReceiverEndpoint"
-              ],
-              "type": "object",
-              "properties": {
-                "SiteURL": {
-                  "type": "string",
-                  "x-ms-summary": "Site URL:",
-                  "description": "The absolute URL of your 360 Portfolio Insights site"
-                },
-                "ReceiverEndpoint": {
-                  "type": "string",
-                  "x-ms-visibility": "internal",
-                  "x-ms-notification-url": true
-                },
-                "Order": {
-                  "format": "int32",
-                  "type": "integer",
-                  "x-ms-visibility": "advanced",
-                  "x-ms-summary": "Event Order",
-                  "description": "The order of this event in the list"
-                },
-                "Name": {
-                  "type": "string",
-                  "x-ms-visibility": "advanced",
-                  "x-ms-summary": "Event Name",
-                  "description": "An identifier for the event"
-                }
-              }
+              "$ref": "#/definitions/EventCreationInformation"
             }
           }
         ],
@@ -1226,25 +1051,34 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "summary": "On Actuals Period Status Changed",
         "description": "Executed when the status of an Actuals Period has been changed. Status values: Any = 0, Opened = 1, Locked = 2, Archived = 3, Waiting For Approval = 4, Open For Edit = 5, Processing = 6, Not Open = 7.",
         "x-ms-trigger": "single",
-        "x-ms-trigger-hint": "Executed when the status of an Actuals Period has been changed. Status values: Any = 0, Opened = 1, Locked = 2, Archived = 3, Waiting For Approval = 4, Open For Edit = 5, Processing = 6, Not Open = 7."
+        "x-ms-trigger-hint": "Executed when the status of an Actuals Period has been changed. Status values: Any = 0, Opened = 1, Locked = 2, Archived = 3, Waiting For Approval = 4, Open For Edit = 5, Processing = 6, Not Open = 7.",
+        "x-ms-openai-data": {
+          "openai-enabled": true,
+          "operations": [
+            {
+              "operationId": "EventsAddActualsPeriodStatusChangedHook",
+              "x-ms-require-user-confirmation": false
+            }
+          ]
+        }
+      },
+      "x-ms-notification-content": {
+        "schema": {
+          "$ref": "#/definitions/RemoteStageEventArgs"
+        }
       }
     },
     "/Events/AddChangeRequestCreatedHook": {
-      "x-ms-notification-content": {
-        "schema": {
-          "$ref": "#/definitions/RemoteChangeRequestsEventArgs"
-        }
-      },
       "post": {
         "tags": [
           "Events"
@@ -1269,35 +1103,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "required": [
-                "ReceiverEndpoint"
-              ],
-              "type": "object",
-              "properties": {
-                "SiteURL": {
-                  "type": "string",
-                  "x-ms-summary": "Site URL:",
-                  "description": "The absolute URL of your 360 Portfolio Insights site"
-                },
-                "ReceiverEndpoint": {
-                  "type": "string",
-                  "x-ms-visibility": "internal",
-                  "x-ms-notification-url": true
-                },
-                "Order": {
-                  "format": "int32",
-                  "type": "integer",
-                  "x-ms-visibility": "advanced",
-                  "x-ms-summary": "Event Order",
-                  "description": "The order of this event in the list"
-                },
-                "Name": {
-                  "type": "string",
-                  "x-ms-visibility": "advanced",
-                  "x-ms-summary": "Event Name",
-                  "description": "An identifier for the event"
-                }
-              }
+              "$ref": "#/definitions/EventCreationInformation"
             }
           }
         ],
@@ -1311,25 +1117,34 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "summary": "On Change Request Created",
         "description": "Executed when a new Change Request is created.",
         "x-ms-trigger": "single",
-        "x-ms-trigger-hint": "Executed when a new Change Request is created."
-      }
-    },
-    "/Events/AddChangeRequestUpdatedHook": {
+        "x-ms-trigger-hint": "Executed when a new Change Request is created.",
+        "x-ms-openai-data": {
+          "openai-enabled": true,
+          "operations": [
+            {
+              "operationId": "EventsAddChangeRequestCreatedHook",
+              "x-ms-require-user-confirmation": false
+            }
+          ]
+        }
+      },
       "x-ms-notification-content": {
         "schema": {
           "$ref": "#/definitions/RemoteChangeRequestsEventArgs"
         }
-      },
+      }
+    },
+    "/Events/AddChangeRequestUpdatedHook": {
       "post": {
         "tags": [
           "Events"
@@ -1354,35 +1169,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "required": [
-                "ReceiverEndpoint"
-              ],
-              "type": "object",
-              "properties": {
-                "SiteURL": {
-                  "type": "string",
-                  "x-ms-summary": "Site URL:",
-                  "description": "The absolute URL of your 360 Portfolio Insights site"
-                },
-                "ReceiverEndpoint": {
-                  "type": "string",
-                  "x-ms-visibility": "internal",
-                  "x-ms-notification-url": true
-                },
-                "Order": {
-                  "format": "int32",
-                  "type": "integer",
-                  "x-ms-visibility": "advanced",
-                  "x-ms-summary": "Event Order",
-                  "description": "The order of this event in the list"
-                },
-                "Name": {
-                  "type": "string",
-                  "x-ms-visibility": "advanced",
-                  "x-ms-summary": "Event Name",
-                  "description": "An identifier for the event"
-                }
-              }
+              "$ref": "#/definitions/EventCreationInformation"
             }
           }
         ],
@@ -1396,25 +1183,34 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "summary": "On Change Request Updated",
         "description": "Executed when a Change Request is updated.",
         "x-ms-trigger": "single",
-        "x-ms-trigger-hint": "Executed when a Change Request is updated."
-      }
-    },
-    "/Events/AddChangeRequestDeletedHook": {
+        "x-ms-trigger-hint": "Executed when a Change Request is updated.",
+        "x-ms-openai-data": {
+          "openai-enabled": true,
+          "operations": [
+            {
+              "operationId": "EventsAddChangeRequestUpdatedHook",
+              "x-ms-require-user-confirmation": false
+            }
+          ]
+        }
+      },
       "x-ms-notification-content": {
         "schema": {
           "$ref": "#/definitions/RemoteChangeRequestsEventArgs"
         }
-      },
+      }
+    },
+    "/Events/AddChangeRequestDeletedHook": {
       "post": {
         "tags": [
           "Events"
@@ -1439,35 +1235,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "required": [
-                "ReceiverEndpoint"
-              ],
-              "type": "object",
-              "properties": {
-                "SiteURL": {
-                  "type": "string",
-                  "x-ms-summary": "Site URL:",
-                  "description": "The absolute URL of your 360 Portfolio Insights site"
-                },
-                "ReceiverEndpoint": {
-                  "type": "string",
-                  "x-ms-visibility": "internal",
-                  "x-ms-notification-url": true
-                },
-                "Order": {
-                  "format": "int32",
-                  "type": "integer",
-                  "x-ms-visibility": "advanced",
-                  "x-ms-summary": "Event Order",
-                  "description": "The order of this event in the list"
-                },
-                "Name": {
-                  "type": "string",
-                  "x-ms-visibility": "advanced",
-                  "x-ms-summary": "Event Name",
-                  "description": "An identifier for the event"
-                }
-              }
+              "$ref": "#/definitions/EventCreationInformation"
             }
           }
         ],
@@ -1481,25 +1249,34 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "summary": "On Change Request Deleted",
-        "description": "Executed when a \u201cChange request\u201d is deleted.",
+        "description": "Executed when a “Change request” is deleted.",
         "x-ms-trigger": "single",
-        "x-ms-trigger-hint": "Executed when a \u201cChange request\u201d is deleted."
+        "x-ms-trigger-hint": "Executed when a “Change request” is deleted.",
+        "x-ms-openai-data": {
+          "openai-enabled": true,
+          "operations": [
+            {
+              "operationId": "EventsAddChangeRequestDeletedHook",
+              "x-ms-require-user-confirmation": false
+            }
+          ]
+        }
+      },
+      "x-ms-notification-content": {
+        "schema": {
+          "$ref": "#/definitions/RemoteChangeRequestsEventArgs"
+        }
       }
     },
     "/Events/AddChangeRequestStatusChangedHook": {
-      "x-ms-notification-content": {
-        "schema": {
-          "$ref": "#/definitions/RemoteChangeRequestStatusEventArgs"
-        }
-      },
       "post": {
         "tags": [
           "Events"
@@ -1524,35 +1301,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "required": [
-                "ReceiverEndpoint"
-              ],
-              "type": "object",
-              "properties": {
-                "SiteURL": {
-                  "type": "string",
-                  "x-ms-summary": "Site URL:",
-                  "description": "The absolute URL of your 360 Portfolio Insights site"
-                },
-                "ReceiverEndpoint": {
-                  "type": "string",
-                  "x-ms-visibility": "internal",
-                  "x-ms-notification-url": true
-                },
-                "Order": {
-                  "format": "int32",
-                  "type": "integer",
-                  "x-ms-visibility": "advanced",
-                  "x-ms-summary": "Event Order",
-                  "description": "The order of this event in the list"
-                },
-                "Name": {
-                  "type": "string",
-                  "x-ms-visibility": "advanced",
-                  "x-ms-summary": "Event Name",
-                  "description": "An identifier for the event"
-                }
-              }
+              "$ref": "#/definitions/EventCreationInformation"
             }
           }
         ],
@@ -1566,25 +1315,34 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "summary": "On Change Request Status Changed",
         "description": "Executed when a Change Request status is changed. Status values: Draft = 0, Pending = 1, Approved = 2, Rejected = 3, None = 4.",
         "x-ms-trigger": "single",
-        "x-ms-trigger-hint": "Executed when a Change Request status is changed. Status values: Draft = 0, Pending = 1, Approved = 2, Rejected = 3, None = 4."
+        "x-ms-trigger-hint": "Executed when a Change Request status is changed. Status values: Draft = 0, Pending = 1, Approved = 2, Rejected = 3, None = 4.",
+        "x-ms-openai-data": {
+          "openai-enabled": true,
+          "operations": [
+            {
+              "operationId": "EventsAddChangeRequestStatusChangedHook",
+              "x-ms-require-user-confirmation": false
+            }
+          ]
+        }
+      },
+      "x-ms-notification-content": {
+        "schema": {
+          "$ref": "#/definitions/RemoteChangeRequestStatusEventArgs"
+        }
       }
     },
     "/Events/AddResourceAssignmentAddedHook": {
-      "x-ms-notification-content": {
-        "schema": {
-          "$ref": "#/definitions/RemoteAssignmentEventArgs"
-        }
-      },
       "post": {
         "tags": [
           "Events"
@@ -1609,35 +1367,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "required": [
-                "ReceiverEndpoint"
-              ],
-              "type": "object",
-              "properties": {
-                "SiteURL": {
-                  "type": "string",
-                  "x-ms-summary": "Site URL:",
-                  "description": "The absolute URL of your 360 Portfolio Insights site"
-                },
-                "ReceiverEndpoint": {
-                  "type": "string",
-                  "x-ms-visibility": "internal",
-                  "x-ms-notification-url": true
-                },
-                "Order": {
-                  "format": "int32",
-                  "type": "integer",
-                  "x-ms-visibility": "advanced",
-                  "x-ms-summary": "Event Order",
-                  "description": "The order of this event in the list"
-                },
-                "Name": {
-                  "type": "string",
-                  "x-ms-visibility": "advanced",
-                  "x-ms-summary": "Event Name",
-                  "description": "An identifier for the event"
-                }
-              }
+              "$ref": "#/definitions/EventCreationInformation"
             }
           }
         ],
@@ -1651,25 +1381,34 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "summary": "On Resource Assignment Created",
-        "description": "Executed when one or more resources are added to an entity\u2019s resource plan.",
+        "description": "Executed when one or more resources are added to an entity’s resource plan.",
         "x-ms-trigger": "single",
-        "x-ms-trigger-hint": "Executed when one or more resources are added to an entity\u2019s resource plan."
-      }
-    },
-    "/Events/AddResourceAssignmentRemovedHook": {
+        "x-ms-trigger-hint": "Executed when one or more resources are added to an entity’s resource plan.",
+        "x-ms-openai-data": {
+          "openai-enabled": true,
+          "operations": [
+            {
+              "operationId": "EventsAddResourceAssignmentAddedHook",
+              "x-ms-require-user-confirmation": false
+            }
+          ]
+        }
+      },
       "x-ms-notification-content": {
         "schema": {
           "$ref": "#/definitions/RemoteAssignmentEventArgs"
         }
-      },
+      }
+    },
+    "/Events/AddResourceAssignmentRemovedHook": {
       "post": {
         "tags": [
           "Events"
@@ -1694,35 +1433,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "required": [
-                "ReceiverEndpoint"
-              ],
-              "type": "object",
-              "properties": {
-                "SiteURL": {
-                  "type": "string",
-                  "x-ms-summary": "Site URL:",
-                  "description": "The absolute URL of your 360 Portfolio Insights site"
-                },
-                "ReceiverEndpoint": {
-                  "type": "string",
-                  "x-ms-visibility": "internal",
-                  "x-ms-notification-url": true
-                },
-                "Order": {
-                  "format": "int32",
-                  "type": "integer",
-                  "x-ms-visibility": "advanced",
-                  "x-ms-summary": "Event Order",
-                  "description": "The order of this event in the list"
-                },
-                "Name": {
-                  "type": "string",
-                  "x-ms-visibility": "advanced",
-                  "x-ms-summary": "Event Name",
-                  "description": "An identifier for the event"
-                }
-              }
+              "$ref": "#/definitions/EventCreationInformation"
             }
           }
         ],
@@ -1736,25 +1447,34 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "summary": "On Resource Assignment Removed",
         "description": "Executed when one or more resources are deleted.",
         "x-ms-trigger": "single",
-        "x-ms-trigger-hint": "Executed when one or more resources are deleted."
-      }
-    },
-    "/Events/AddResourceAssignmentUpdatedHook": {
+        "x-ms-trigger-hint": "Executed when one or more resources are deleted.",
+        "x-ms-openai-data": {
+          "openai-enabled": true,
+          "operations": [
+            {
+              "operationId": "EventsAddResourceAssignmentRemovedHook",
+              "x-ms-require-user-confirmation": false
+            }
+          ]
+        }
+      },
       "x-ms-notification-content": {
         "schema": {
           "$ref": "#/definitions/RemoteAssignmentEventArgs"
         }
-      },
+      }
+    },
+    "/Events/AddResourceAssignmentUpdatedHook": {
       "post": {
         "tags": [
           "Events"
@@ -1779,35 +1499,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "required": [
-                "ReceiverEndpoint"
-              ],
-              "type": "object",
-              "properties": {
-                "SiteURL": {
-                  "type": "string",
-                  "x-ms-summary": "Site URL:",
-                  "description": "The absolute URL of your 360 Portfolio Insights site"
-                },
-                "ReceiverEndpoint": {
-                  "type": "string",
-                  "x-ms-visibility": "internal",
-                  "x-ms-notification-url": true
-                },
-                "Order": {
-                  "format": "int32",
-                  "type": "integer",
-                  "x-ms-visibility": "advanced",
-                  "x-ms-summary": "Event Order",
-                  "description": "The order of this event in the list"
-                },
-                "Name": {
-                  "type": "string",
-                  "x-ms-visibility": "advanced",
-                  "x-ms-summary": "Event Name",
-                  "description": "An identifier for the event"
-                }
-              }
+              "$ref": "#/definitions/EventCreationInformation"
             }
           }
         ],
@@ -1821,25 +1513,34 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "summary": "On Resource Assignment Updated",
         "description": "Executed when one or more resources are re-assigned.",
         "x-ms-trigger": "single",
-        "x-ms-trigger-hint": "Executed when one or more resources are re-assigned."
+        "x-ms-trigger-hint": "Executed when one or more resources are re-assigned.",
+        "x-ms-openai-data": {
+          "openai-enabled": true,
+          "operations": [
+            {
+              "operationId": "EventsAddResourceAssignmentUpdatedHook",
+              "x-ms-require-user-confirmation": false
+            }
+          ]
+        }
+      },
+      "x-ms-notification-content": {
+        "schema": {
+          "$ref": "#/definitions/RemoteAssignmentEventArgs"
+        }
       }
     },
     "/Events/AddMilestoneCreatedHook": {
-      "x-ms-notification-content": {
-        "schema": {
-          "$ref": "#/definitions/RemoteMilestoneEventArgs"
-        }
-      },
       "post": {
         "tags": [
           "Events"
@@ -1864,35 +1565,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "required": [
-                "ReceiverEndpoint"
-              ],
-              "type": "object",
-              "properties": {
-                "SiteURL": {
-                  "type": "string",
-                  "x-ms-summary": "Site URL:",
-                  "description": "The absolute URL of your 360 Portfolio Insights site"
-                },
-                "ReceiverEndpoint": {
-                  "type": "string",
-                  "x-ms-visibility": "internal",
-                  "x-ms-notification-url": true
-                },
-                "Order": {
-                  "format": "int32",
-                  "type": "integer",
-                  "x-ms-visibility": "advanced",
-                  "x-ms-summary": "Event Order",
-                  "description": "The order of this event in the list"
-                },
-                "Name": {
-                  "type": "string",
-                  "x-ms-visibility": "advanced",
-                  "x-ms-summary": "Event Name",
-                  "description": "An identifier for the event"
-                }
-              }
+              "$ref": "#/definitions/EventCreationInformation"
             }
           }
         ],
@@ -1906,25 +1579,34 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "summary": "On Milestone Created",
         "description": "Executed when a milestone is created in the NH360 Portfolio Insights site.",
         "x-ms-trigger": "single",
-        "x-ms-trigger-hint": "Executed when a milestone is created in the NH360 Portfolio Insights site."
-      }
-    },
-    "/Events/AddMilestoneUpdatedHook": {
+        "x-ms-trigger-hint": "Executed when a milestone is created in the NH360 Portfolio Insights site.",
+        "x-ms-openai-data": {
+          "openai-enabled": true,
+          "operations": [
+            {
+              "operationId": "EventsAddMilestoneCreatedHook",
+              "x-ms-require-user-confirmation": false
+            }
+          ]
+        }
+      },
       "x-ms-notification-content": {
         "schema": {
           "$ref": "#/definitions/RemoteMilestoneEventArgs"
         }
-      },
+      }
+    },
+    "/Events/AddMilestoneUpdatedHook": {
       "post": {
         "tags": [
           "Events"
@@ -1949,35 +1631,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "required": [
-                "ReceiverEndpoint"
-              ],
-              "type": "object",
-              "properties": {
-                "SiteURL": {
-                  "type": "string",
-                  "x-ms-summary": "Site URL:",
-                  "description": "The absolute URL of your 360 Portfolio Insights site"
-                },
-                "ReceiverEndpoint": {
-                  "type": "string",
-                  "x-ms-visibility": "internal",
-                  "x-ms-notification-url": true
-                },
-                "Order": {
-                  "format": "int32",
-                  "type": "integer",
-                  "x-ms-visibility": "advanced",
-                  "x-ms-summary": "Event Order",
-                  "description": "The order of this event in the list"
-                },
-                "Name": {
-                  "type": "string",
-                  "x-ms-visibility": "advanced",
-                  "x-ms-summary": "Event Name",
-                  "description": "An identifier for the event"
-                }
-              }
+              "$ref": "#/definitions/EventCreationInformation"
             }
           }
         ],
@@ -1991,25 +1645,34 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "summary": "On Milestone Updated",
         "description": "Executed when a milestone is edited in the NH360 Portfolio Insights site.",
         "x-ms-trigger": "single",
-        "x-ms-trigger-hint": "Executed when a milestone is edited in the NH360 Portfolio Insights site."
-      }
-    },
-    "/Events/AddMilestoneDeletedHook": {
+        "x-ms-trigger-hint": "Executed when a milestone is edited in the NH360 Portfolio Insights site.",
+        "x-ms-openai-data": {
+          "openai-enabled": true,
+          "operations": [
+            {
+              "operationId": "EventsAddMilestoneUpdatedHook",
+              "x-ms-require-user-confirmation": false
+            }
+          ]
+        }
+      },
       "x-ms-notification-content": {
         "schema": {
           "$ref": "#/definitions/RemoteMilestoneEventArgs"
         }
-      },
+      }
+    },
+    "/Events/AddMilestoneDeletedHook": {
       "post": {
         "tags": [
           "Events"
@@ -2034,35 +1697,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "required": [
-                "ReceiverEndpoint"
-              ],
-              "type": "object",
-              "properties": {
-                "SiteURL": {
-                  "type": "string",
-                  "x-ms-summary": "Site URL:",
-                  "description": "The absolute URL of your 360 Portfolio Insights site"
-                },
-                "ReceiverEndpoint": {
-                  "type": "string",
-                  "x-ms-visibility": "internal",
-                  "x-ms-notification-url": true
-                },
-                "Order": {
-                  "format": "int32",
-                  "type": "integer",
-                  "x-ms-visibility": "advanced",
-                  "x-ms-summary": "Event Order",
-                  "description": "The order of this event in the list"
-                },
-                "Name": {
-                  "type": "string",
-                  "x-ms-visibility": "advanced",
-                  "x-ms-summary": "Event Name",
-                  "description": "An identifier for the event"
-                }
-              }
+              "$ref": "#/definitions/EventCreationInformation"
             }
           }
         ],
@@ -2076,25 +1711,34 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "summary": "On Milestone Deleted",
         "description": "Executed when a milestone is deleted in the NH360 Portfolio Insights site.",
         "x-ms-trigger": "single",
-        "x-ms-trigger-hint": "Executed when a milestone is deleted in the NH360 Portfolio Insights site."
+        "x-ms-trigger-hint": "Executed when a milestone is deleted in the NH360 Portfolio Insights site.",
+        "x-ms-openai-data": {
+          "openai-enabled": true,
+          "operations": [
+            {
+              "operationId": "EventsAddMilestoneDeletedHook",
+              "x-ms-require-user-confirmation": false
+            }
+          ]
+        }
+      },
+      "x-ms-notification-content": {
+        "schema": {
+          "$ref": "#/definitions/RemoteMilestoneEventArgs"
+        }
       }
     },
     "/Events/AddRelationshipCreatedHook": {
-      "x-ms-notification-content": {
-        "schema": {
-          "$ref": "#/definitions/RemoteRelationshipEventArgs"
-        }
-      },
       "post": {
         "tags": [
           "Events"
@@ -2119,35 +1763,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "required": [
-                "ReceiverEndpoint"
-              ],
-              "type": "object",
-              "properties": {
-                "SiteURL": {
-                  "type": "string",
-                  "x-ms-summary": "Site URL:",
-                  "description": "The absolute URL of your 360 Portfolio Insights site"
-                },
-                "ReceiverEndpoint": {
-                  "type": "string",
-                  "x-ms-visibility": "internal",
-                  "x-ms-notification-url": true
-                },
-                "Order": {
-                  "format": "int32",
-                  "type": "integer",
-                  "x-ms-visibility": "advanced",
-                  "x-ms-summary": "Event Order",
-                  "description": "The order of this event in the list"
-                },
-                "Name": {
-                  "type": "string",
-                  "x-ms-visibility": "advanced",
-                  "x-ms-summary": "Event Name",
-                  "description": "An identifier for the event"
-                }
-              }
+              "$ref": "#/definitions/EventCreationInformation"
             }
           }
         ],
@@ -2161,25 +1777,34 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "summary": "On Relationship Created",
         "description": "Executed each time a new relationship is created in the NH360 Portfolio Insights site.",
         "x-ms-trigger": "single",
-        "x-ms-trigger-hint": "Executed each time a new relationship is created in the NH360 Portfolio Insights site."
-      }
-    },
-    "/Events/AddRelationshipUpdatedHook": {
+        "x-ms-trigger-hint": "Executed each time a new relationship is created in the NH360 Portfolio Insights site.",
+        "x-ms-openai-data": {
+          "openai-enabled": true,
+          "operations": [
+            {
+              "operationId": "EventsAddRelationshipCreatedHook",
+              "x-ms-require-user-confirmation": false
+            }
+          ]
+        }
+      },
       "x-ms-notification-content": {
         "schema": {
           "$ref": "#/definitions/RemoteRelationshipEventArgs"
         }
-      },
+      }
+    },
+    "/Events/AddRelationshipUpdatedHook": {
       "post": {
         "tags": [
           "Events"
@@ -2204,35 +1829,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "required": [
-                "ReceiverEndpoint"
-              ],
-              "type": "object",
-              "properties": {
-                "SiteURL": {
-                  "type": "string",
-                  "x-ms-summary": "Site URL:",
-                  "description": "The absolute URL of your 360 Portfolio Insights site"
-                },
-                "ReceiverEndpoint": {
-                  "type": "string",
-                  "x-ms-visibility": "internal",
-                  "x-ms-notification-url": true
-                },
-                "Order": {
-                  "format": "int32",
-                  "type": "integer",
-                  "x-ms-visibility": "advanced",
-                  "x-ms-summary": "Event Order",
-                  "description": "The order of this event in the list"
-                },
-                "Name": {
-                  "type": "string",
-                  "x-ms-visibility": "advanced",
-                  "x-ms-summary": "Event Name",
-                  "description": "An identifier for the event"
-                }
-              }
+              "$ref": "#/definitions/EventCreationInformation"
             }
           }
         ],
@@ -2246,25 +1843,34 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "summary": "On Relationship Updated",
         "description": "Executed each time a new relationship is edited in the NH360 Portfolio Insights site.",
         "x-ms-trigger": "single",
-        "x-ms-trigger-hint": "Executed each time a new relationship is edited in the NH360 Portfolio Insights site."
-      }
-    },
-    "/Events/AddRelationshipDeletedHook": {
+        "x-ms-trigger-hint": "Executed each time a new relationship is edited in the NH360 Portfolio Insights site.",
+        "x-ms-openai-data": {
+          "openai-enabled": true,
+          "operations": [
+            {
+              "operationId": "EventsAddRelationshipUpdatedHook",
+              "x-ms-require-user-confirmation": false
+            }
+          ]
+        }
+      },
       "x-ms-notification-content": {
         "schema": {
           "$ref": "#/definitions/RemoteRelationshipEventArgs"
         }
-      },
+      }
+    },
+    "/Events/AddRelationshipDeletedHook": {
       "post": {
         "tags": [
           "Events"
@@ -2289,35 +1895,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "required": [
-                "ReceiverEndpoint"
-              ],
-              "type": "object",
-              "properties": {
-                "SiteURL": {
-                  "type": "string",
-                  "x-ms-summary": "Site URL:",
-                  "description": "The absolute URL of your 360 Portfolio Insights site"
-                },
-                "ReceiverEndpoint": {
-                  "type": "string",
-                  "x-ms-visibility": "internal",
-                  "x-ms-notification-url": true
-                },
-                "Order": {
-                  "format": "int32",
-                  "type": "integer",
-                  "x-ms-visibility": "advanced",
-                  "x-ms-summary": "Event Order",
-                  "description": "The order of this event in the list"
-                },
-                "Name": {
-                  "type": "string",
-                  "x-ms-visibility": "advanced",
-                  "x-ms-summary": "Event Name",
-                  "description": "An identifier for the event"
-                }
-              }
+              "$ref": "#/definitions/EventCreationInformation"
             }
           }
         ],
@@ -2331,17 +1909,31 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "summary": "On Relationship Deleted",
         "description": "Executed each time a new relationship is deleted in the NH360 Portfolio Insights site.",
         "x-ms-trigger": "single",
-        "x-ms-trigger-hint": "Executed each time a new relationship is deleted in the NH360 Portfolio Insights site."
+        "x-ms-trigger-hint": "Executed each time a new relationship is deleted in the NH360 Portfolio Insights site.",
+        "x-ms-openai-data": {
+          "openai-enabled": true,
+          "operations": [
+            {
+              "operationId": "EventsAddRelationshipDeletedHook",
+              "x-ms-require-user-confirmation": false
+            }
+          ]
+        }
+      },
+      "x-ms-notification-content": {
+        "schema": {
+          "$ref": "#/definitions/RemoteRelationshipEventArgs"
+        }
       }
     },
     "/Events/DeleteHook": {
@@ -2374,11 +1966,11 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "x-ms-visibility": "internal",
@@ -2458,25 +2050,16 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "x-ms-visibility": "internal",
         "summary": "Lists financial breakdowns",
-        "description": "Utility method",
-        "x-ms-openai-data": {
-          "openai-enabled": true,
-          "operations": [
-            {
-              "operationId": "FinancialBreakdownsGetFinancialBreakdowns",
-              "x-ms-require-user-confirmation": false
-            }
-          ]
-        }
+        "description": "Utility method"
       }
     },
     "/FinancialDimensions/GetFinancialDimensions": {
@@ -2529,11 +2112,11 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "x-ms-visibility": "internal",
@@ -2622,11 +2205,102 @@
           "400": {
             "description": "Bad request"
           },
+          "500": {
+            "description": "Server error"
+          },
           "404": {
             "description": "Endpoint not found"
+          }
+        },
+        "deprecated": true,
+        "summary": "Create entity",
+        "description": "Create a new entity in the NH360 Portfolio Insights site.",
+        "x-ms-openai-data": {
+          "openai-enabled": true,
+          "operations": [
+            {
+              "operationId": "FinancialEntitiesCreateEntity",
+              "x-ms-require-user-confirmation": false
+            }
+          ]
+        }
+      }
+    },
+    "/FinancialEntities/CreateEntityNoRetry": {
+      "post": {
+        "tags": [
+          "FinancialEntities"
+        ],
+        "operationId": "FinancialEntitiesCreateEntityNoRetry",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "siteUrl",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "x-ms-summary": "Site URL",
+            "description": "The absolute URL of your NH360 Portfolio Insights site"
+          },
+          {
+            "name": "entityTypeUid",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "format": "uuid",
+            "x-ms-dynamic-values": {
+              "operationId": "EntityTypesGetEntityTypes",
+              "value-path": "Id",
+              "value-title": "Name",
+              "parameters": {
+                "siteUrl": {
+                  "parameter": "siteUrl"
+                }
+              }
+            },
+            "x-ms-dynamic-list": {
+              "operationId": "EntityTypesGetEntityTypes",
+              "itemValuePath": "Id",
+              "itemTitlePath": "Name",
+              "parameters": {
+                "siteUrl": {
+                  "parameterReference": "siteUrl"
+                }
+              }
+            },
+            "x-ms-summary": "Entity Type",
+            "description": "Choose an Entity Type to create the entity."
+          },
+          {
+            "name": "entityName",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "x-ms-summary": "Entity Name",
+            "description": "Input a unique name for the entity."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/CallResultWithData"
+            }
+          },
+          "400": {
+            "description": "Bad request"
           },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "summary": "Create entity",
@@ -2635,7 +2309,7 @@
           "openai-enabled": true,
           "operations": [
             {
-              "operationId": "FinancialEntitiesCreateEntity",
+              "operationId": "FinancialEntitiesCreateEntityNoRetry",
               "x-ms-require-user-confirmation": false
             }
           ]
@@ -2712,11 +2386,11 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "x-ms-visibility": "internal",
@@ -2787,11 +2461,11 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "x-ms-visibility": "internal",
@@ -2842,11 +2516,11 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "x-ms-visibility": "internal",
@@ -2897,11 +2571,11 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "x-ms-visibility": "internal",
@@ -2972,11 +2646,11 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "summary": "List all entities",
@@ -3063,11 +2737,11 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "summary": "Get entity",
@@ -3077,6 +2751,97 @@
           "operations": [
             {
               "operationId": "FinancialEntitiesGetEntity",
+              "x-ms-require-user-confirmation": false
+            }
+          ]
+        }
+      }
+    },
+    "/FinancialEntities/GetEntityNoRetry": {
+      "get": {
+        "tags": [
+          "FinancialEntities"
+        ],
+        "operationId": "FinancialEntitiesGetEntityNoRetry",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "siteUrl",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "x-ms-summary": "Site URL",
+            "description": "The absolute URL of your NH360 Portfolio Insights site"
+          },
+          {
+            "name": "entityId",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "format": "uuid",
+            "x-ms-dynamic-values": {
+              "operationId": "FinancialEntitiesGetAllEntitiesShallow",
+              "value-path": "Id",
+              "value-title": "Name",
+              "parameters": {
+                "siteUrl": {
+                  "parameter": "siteUrl"
+                }
+              }
+            },
+            "x-ms-dynamic-list": {
+              "operationId": "FinancialEntitiesGetAllEntitiesShallow",
+              "itemValuePath": "Id",
+              "itemTitlePath": "Name",
+              "parameters": {
+                "siteUrl": {
+                  "parameterReference": "siteUrl"
+                }
+              }
+            },
+            "x-ms-summary": "Entity",
+            "description": "Choose entity by name or input an entity Uid."
+          },
+          {
+            "name": "selectColumns",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "x-ms-visibility": "advanced",
+            "x-ms-summary": "Columns",
+            "description": "Use OData syntax to select only desired columns"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/CallResultWithData"
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "500": {
+            "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
+          }
+        },
+        "summary": "Get entity -no retry",
+        "description": "Returns properties of a selected entity.",
+        "x-ms-openai-data": {
+          "openai-enabled": true,
+          "operations": [
+            {
+              "operationId": "FinancialEntitiesGetEntityNoRetry",
               "x-ms-require-user-confirmation": false
             }
           ]
@@ -3213,11 +2978,11 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "x-ms-visibility": "internal",
@@ -3260,11 +3025,11 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "x-ms-visibility": "internal",
@@ -3346,17 +3111,17 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "summary": "Get entity fields",
         "description": "Returns a list with an entity\u2019s field names and their unique identifiers.",
         "x-ms-openai-data": {
-          "openai-enabled": false,
+          "openai-enabled": true,
           "operations": [
             {
               "operationId": "FinancialEntitiesGetEntityFields",
@@ -3431,11 +3196,11 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "summary": "Get entity fields values",
@@ -3547,11 +3312,11 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "summary": "Get entity field value",
@@ -3664,11 +3429,11 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "summary": "Get the entity's stage validation status",
@@ -3774,11 +3539,130 @@
           "400": {
             "description": "Bad request"
           },
+          "500": {
+            "description": "Server error"
+          },
           "404": {
             "description": "Endpoint not found"
+          }
+        },
+        "deprecated": true,
+        "summary": "Update entity field value",
+        "description": "Update the value of an Entity Field. For fields that use Option Sets, the Value should be set using the Option Set Value unique identifier.",
+        "x-ms-openai-data": {
+          "openai-enabled": true,
+          "operations": [
+            {
+              "operationId": "FinancialEntitiesSetEntityFieldValue",
+              "x-ms-require-user-confirmation": false
+            }
+          ]
+        }
+      }
+    },
+    "/FinancialEntities/SetEntityFieldValueNoRetry": {
+      "post": {
+        "tags": [
+          "FinancialEntities"
+        ],
+        "operationId": "FinancialEntitiesSetEntityFieldValueNoRetry",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "siteUrl",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "x-ms-summary": "Site URL",
+            "description": "The absolute URL of your NH360 Portfolio Insights site"
+          },
+          {
+            "name": "entityId",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "format": "uuid",
+            "x-ms-dynamic-values": {
+              "operationId": "FinancialEntitiesGetAllEntitiesShallow",
+              "value-path": "Id",
+              "value-title": "Name",
+              "parameters": {
+                "siteUrl": {
+                  "parameter": "siteUrl"
+                }
+              }
+            },
+            "x-ms-dynamic-list": {
+              "operationId": "FinancialEntitiesGetAllEntitiesShallow",
+              "itemValuePath": "Id",
+              "itemTitlePath": "Name",
+              "parameters": {
+                "siteUrl": {
+                  "parameterReference": "siteUrl"
+                }
+              }
+            },
+            "x-ms-summary": "Entity",
+            "description": "Choose entity by name or input an entity Uid."
+          },
+          {
+            "name": "fieldIdentifier",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "x-ms-dynamic-values": {
+              "operationId": "CustomFieldsGetEntityCustomFields",
+              "value-path": "Id",
+              "value-title": "Name",
+              "parameters": {
+                "siteUrl": {
+                  "parameter": "siteUrl"
+                }
+              }
+            },
+            "x-ms-dynamic-list": {
+              "operationId": "CustomFieldsGetEntityCustomFields",
+              "itemValuePath": "Id",
+              "itemTitlePath": "Name",
+              "parameters": {
+                "siteUrl": {
+                  "parameterReference": "siteUrl"
+                }
+              }
+            },
+            "x-ms-summary": "Field",
+            "description": "Choose field by name or input a field Uid."
+          },
+          {
+            "name": "value",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "x-ms-summary": "Value",
+            "description": "Input the field value. Set to null to clear field value."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/CallResult"
+            }
+          },
+          "400": {
+            "description": "Bad request"
           },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "summary": "Update entity field value",
@@ -3787,7 +3671,7 @@
           "openai-enabled": true,
           "operations": [
             {
-              "operationId": "FinancialEntitiesSetEntityFieldValue",
+              "operationId": "FinancialEntitiesSetEntityFieldValueNoRetry",
               "x-ms-require-user-confirmation": false
             }
           ]
@@ -4048,11 +3932,11 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "x-ms-visibility": "internal",
@@ -4324,11 +4208,11 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "x-ms-visibility": "internal",
@@ -4646,11 +4530,11 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "x-ms-visibility": "internal",
@@ -4969,11 +4853,11 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "x-ms-visibility": "internal",
@@ -5226,11 +5110,11 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "summary": "Get financial custom field value",
@@ -5488,11 +5372,11 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "summary": "Update financial custom field",
@@ -5692,11 +5576,11 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "x-ms-visibility": "internal",
@@ -5909,11 +5793,11 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "x-ms-visibility": "internal",
@@ -5995,11 +5879,11 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "summary": "Get resources assigned to entity",
@@ -6108,11 +5992,11 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "summary": "Add resource to entity",
@@ -6217,11 +6101,11 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "summary": "Execute Stage Transition",
@@ -6282,11 +6166,11 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "x-ms-visibility": "internal",
@@ -6368,11 +6252,11 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "summary": "List entity history entries",
@@ -6414,11 +6298,11 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "x-ms-visibility": "internal",
@@ -6461,11 +6345,11 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "x-ms-visibility": "internal",
@@ -6554,7 +6438,7 @@
               "parameters": {}
             },
             "x-ms-summary": "Activity icon",
-            "description": "Insert a fluent UI Icon (ex: arrow_step _back_16_regular)."
+            "description": "Select or insert a fluent UI Icon (ex: AddLink)."
           },
           {
             "name": "activityDetails",
@@ -6592,11 +6476,11 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "summary": "Add a new entry to the entity's history log",
@@ -6656,11 +6540,11 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "x-ms-visibility": "internal",
@@ -6729,11 +6613,11 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "x-ms-visibility": "internal",
@@ -6786,11 +6670,11 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "x-ms-visibility": "internal",
@@ -6843,11 +6727,11 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "summary": "List all option sets",
@@ -6928,11 +6812,11 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "summary": "Get option set values",
@@ -6993,11 +6877,11 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "x-ms-visibility": "internal",
@@ -7111,11 +6995,11 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "x-ms-visibility": "internal",
@@ -7265,11 +7149,11 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "x-ms-visibility": "internal",
@@ -7386,11 +7270,11 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "x-ms-visibility": "internal",
@@ -7532,11 +7416,11 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "x-ms-visibility": "internal",
@@ -7678,11 +7562,11 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "x-ms-visibility": "internal",
@@ -7725,16 +7609,25 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "x-ms-visibility": "internal",
         "summary": "Lists milestones status enum values",
-        "description": "Utility method"
+        "description": "Utility method",
+        "x-ms-openai-data": {
+          "openai-enabled": true,
+          "operations": [
+            {
+              "operationId": "MilestonesGetMilestoneStatusEnumValues",
+              "x-ms-require-user-confirmation": false
+            }
+          ]
+        }
       }
     },
     "/Resources/GetResources": {
@@ -7773,16 +7666,25 @@
           "400": {
             "description": "Bad request"
           },
-          "404": {
-            "description": "Endpoint not found"
-          },
           "500": {
             "description": "Server error"
+          },
+          "404": {
+            "description": "Endpoint not found"
           }
         },
         "x-ms-visibility": "internal",
         "summary": "List all resources",
-        "description": "List all resources from NH360 Portfolio Insights"
+        "description": "List all resources from NH360 Portfolio Insights",
+        "x-ms-openai-data": {
+          "openai-enabled": true,
+          "operations": [
+            {
+              "operationId": "ResourcesGetResources",
+              "x-ms-require-user-confirmation": false
+            }
+          ]
+        }
       }
     }
   },
@@ -7800,6 +7702,7 @@
     },
     "EventCreationInformation": {
       "required": [
+        "SiteURL",
         "ReceiverEndpoint"
       ],
       "type": "object",
@@ -7814,16 +7717,9 @@
           "x-ms-visibility": "internal",
           "x-ms-notification-url": true
         },
-        "Order": {
-          "format": "int32",
-          "type": "integer",
-          "x-ms-visibility": "advanced",
-          "x-ms-summary": "Event Order",
-          "description": "The order of this event in the list"
-        },
         "Name": {
           "type": "string",
-          "x-ms-visibility": "advanced",
+          "x-ms-visibility": "internal",
           "x-ms-summary": "Event Name",
           "description": "An identifier for the event"
         }
@@ -7834,6 +7730,24 @@
       "properties": {
         "Succeeded": {
           "type": "boolean"
+        }
+      }
+    },
+    "CallResultWithData": {
+      "type": "object",
+      "properties": {
+        "Data": {},
+        "Errors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "Warnings": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       }
     },
@@ -7939,8 +7853,23 @@
           "type": "string",
           "example": "00000000-0000-0000-0000-000000000000"
         },
-        "Value": {
-          "type": "string"
+        "Value": {}
+      }
+    },
+    "CallResult": {
+      "type": "object",
+      "properties": {
+        "Errors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "Warnings": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       }
     },
@@ -8292,6 +8221,16 @@
           "readOnly": true,
           "example": "00000000-0000-0000-0000-000000000000"
         },
+        "PreviousStageUid": {
+          "format": "uuid",
+          "type": "string",
+          "readOnly": true,
+          "example": "00000000-0000-0000-0000-000000000000"
+        },
+        "PreviousStageName": {
+          "type": "string",
+          "readOnly": true
+        },
         "ProjectUid": {
           "format": "uuid",
           "type": "string",
@@ -8561,8 +8500,8 @@
   "securityDefinitions": {
     "aad": {
       "type": "oauth2",
-      "flow": "accessCode",
       "description": "OAuth2 with Azure Active Directory",
+      "flow": "accessCode",
       "authorizationUrl": "https://login.windows.net/common/oauth2/authorize",
       "tokenUrl": "https://login.windows.net/common/oauth2/token",
       "scopes": {
