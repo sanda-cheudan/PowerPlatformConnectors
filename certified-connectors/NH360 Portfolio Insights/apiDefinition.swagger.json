@@ -634,7 +634,16 @@
         "summary": "On Financial Values Change",
         "description": "Executed when a financial value is changed.",
         "x-ms-trigger": "single",
-        "x-ms-trigger-hint": "Executed when a financial value is changed."
+        "x-ms-trigger-hint": "Executed when a financial value is changed.",
+        "x-ms-openai-data": {
+          "openai-enabled": true,
+          "operations": [
+            {
+              "operationId": "EventsAddFinancialValuesChangedHook",
+              "x-ms-require-user-confirmation": false
+            }
+          ]
+        }
       }
     },
     "/Events/AddEntityCreatedHook": {
@@ -668,6 +677,7 @@
             "required": true,
             "schema": {
               "required": [
+                "SiteURL",
                 "ReceiverEndpoint"
               ],
               "type": "object",
@@ -681,13 +691,6 @@
                   "type": "string",
                   "x-ms-visibility": "internal",
                   "x-ms-notification-url": true
-                },
-                "Order": {
-                  "format": "int32",
-                  "type": "integer",
-                  "x-ms-visibility": "advanced",
-                  "x-ms-summary": "Event Order",
-                  "description": "The order of this event in the list"
                 },
                 "Name": {
                   "type": "string",
